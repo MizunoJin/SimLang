@@ -52,6 +52,7 @@ group :development do
   gem 'rails_best_practices', '~> 1.23', '>= 1.23.1'
   gem 'faker', '~> 2.20'
   gem 'better_errors', '~> 2.9', '>= 2.9.1'
+  gem 'binding_of_caller', '~> 1.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
