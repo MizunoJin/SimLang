@@ -13,11 +13,11 @@
 ActiveRecord::Schema.define(version: 2022_04_21_102355) do
 
   create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "name", limit: 100, null: false
-    t.text "question", null: false
+    t.string "title", limit: 100, null: false
+    t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_questions_on_name"
+    t.index ["title"], name: "index_questions_on_title"
   end
 
 end
