@@ -6,11 +6,11 @@
         {{ question.title }}
       </v-list-item>
     </v-list>
-    <v-btn type="submit" @click="fetchQuestions()">fetchQuestions</v-btn>
   </v-container>
 </template>
 
 <script>
+// import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -21,6 +21,9 @@ export default {
   },
   methods: {
     ...mapActions("questions", ["fetchQuestions"]),
+  },
+  mounted() {
+    this.fetchQuestions();
   },
 };
 </script>
