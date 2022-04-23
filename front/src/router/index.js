@@ -32,6 +32,13 @@ const routes = [
       return import("../views/QuestionView.vue");
     },
   },
+  {
+    path: "/answer",
+    name: "answer",
+    component: function () {
+      return import("../views/AnswerView.vue");
+    },
+  },
 ];
 
 const router = new VueRouter({

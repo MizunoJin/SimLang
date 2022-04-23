@@ -17,7 +17,9 @@
             label="外国語で返答する"
             hint="外国語で入力してください"
           ></v-textarea>
-          <v-btn color="accent" elevation="6" large>回答する</v-btn>
+          <router-link to="/answer">
+            <v-btn color="accent" elevation="6" large>回答する</v-btn>
+          </router-link>
         </v-col>
       </v-col>
     </v-row>
