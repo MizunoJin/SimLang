@@ -11,25 +11,25 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   name: "QuestionList",
 
   data: () => ({
-    questions: []
+    questions: [],
   }),
   methods: {
     fetchQuestions() {
       axios
-        .get('http://localhost:3000/questions')
-        .then(response => {
+        .get("http://localhost:3000/questions")
+        .then((response) => {
           this.questions = response.data;
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
-    }
-  }
+    },
+  },
 };
 </script>
