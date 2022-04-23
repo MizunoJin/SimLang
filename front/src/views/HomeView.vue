@@ -1,15 +1,25 @@
 <template>
-  <hello-world />
+  <v-container>
+    <v-row class="text-center">
+      <v-col class="mb-4">
+        <h1 class="display-2 font-weight-bold mb-3">Welcome to SimLang</h1>
+
+        <p class="subheading font-weight-regular">
+          SimLangはAIで他言語を学習できるサービスです。
+        </p>
+        <router-link to="/about"
+          ><div class="text-h6">SimLangについて</div></router-link
+        >
+        <router-link to="/questions"
+          ><div class="text-h6">始める</div></router-link
+        >
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld";
-
 export default {
-  name: "Home",
-
-  components: {
-    HelloWorld,
-  },
+  name: "HomeView",
 };
 </script>
