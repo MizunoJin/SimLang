@@ -17,9 +17,11 @@
             label="外国語で返答する"
             hint="外国語で入力してください"
           ></v-textarea>
-          <router-link to="/answer">
-            <v-btn color="accent" elevation="6" large>回答する</v-btn>
-          </router-link>
+          <!-- <router-link to="/answer"> -->
+          <v-btn color="accent" elevation="6" large @click="fetchTranslation"
+            >回答する</v-btn
+          >
+          <!-- </router-link> -->
         </v-col>
       </v-col>
     </v-row>
@@ -28,6 +30,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import axios from "axios";
 
 export default {
   name: "QuestionView",
@@ -37,6 +40,11 @@ export default {
   },
   methods: {
     ...mapActions("questions", ["fetchQuestion"]),
+    fetchTranslation() {
+      axios
+        .get("http://localhost:3000/translate")
+        .then((response) => console.log(response));
+    },
   },
   mounted() {
     this.fetchQuestion(this.$route.params.id);
