@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 class="text-h1">QuestionList</h1>
+    <h1 class="text-h2">お好きな問題を選んでください</h1>
     <v-list>
       <v-list-item v-for="question in questions" :key="question.id">
         {{ question.title }}
