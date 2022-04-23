@@ -3,14 +3,15 @@
     <h1 class="text-h2">お好きな問題を選んでください</h1>
     <v-list>
       <v-list-item v-for="question in questions" :key="question.id">
-        {{ question.title }}
+        <router-link :to="{ name: 'question', params: { id: question.id } }">
+          {{ question.title }}
+        </router-link>
       </v-list-item>
     </v-list>
   </v-container>
 </template>
 
 <script>
-// import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
 
 export default {

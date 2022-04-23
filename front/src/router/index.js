@@ -12,6 +12,13 @@ const routes = [
     },
   },
   {
+    path: "/about",
+    name: "about",
+    component: function () {
+      return import("../views/AboutView.vue");
+    },
+  },
+  {
     path: "/questions",
     name: "questions",
     component: function () {
@@ -19,10 +26,10 @@ const routes = [
     },
   },
   {
-    path: "/about",
-    name: "about",
+    path: "/question/:id",
+    name: "question",
     component: function () {
-      return import("../views/AboutView.vue");
+      return import("../views/QuestionView.vue");
     },
   },
 ];
