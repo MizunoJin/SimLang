@@ -42,8 +42,10 @@ export default {
     ...mapActions("questions", ["fetchQuestion"]),
     fetchTranslation() {
       axios
-        .get("http://localhost:3000/translate")
-        .then((response) => console.log(response));
+        .get("http://localhost:3000/translate", {
+          params: { text: "こんにちは", target_lang: "EN" },
+        })
+        .then((response) => console.log(response.data));
     },
   },
   mounted() {
