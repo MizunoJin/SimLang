@@ -7,12 +7,11 @@
         <p class="subheading font-weight-regular">
           SimLangはAIで他言語を学習できるサービスです。
         </p>
-        <router-link to="/about"
-          ><div class="text-h6">SimLangについて</div></router-link
-        >
-        <router-link to="/questions"
-          ><div class="text-h6">始める</div></router-link
-        >
+        <v-btn color="primary" elevation="2">
+          <router-link to="/questions"
+            ><div class="text-h6 white--text">始める</div></router-link
+          >
+        </v-btn>
       </v-col>
     </v-row>
   </v-container>
