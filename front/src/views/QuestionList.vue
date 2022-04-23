@@ -11,25 +11,16 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "QuestionList",
 
-  data: () => ({
-    questions: [],
-  }),
+  computed: {
+    ...mapGetters("questions", ["questions"]),
+  },
   methods: {
-    fetchQuestions() {
-      axios
-        .get("http://localhost:3000/questions")
-        .then((response) => {
-          this.questions = response.data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    },
+    ...mapActions("questions", ["fetchQuestions"]),
   },
 };
 </script>
