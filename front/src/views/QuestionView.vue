@@ -8,20 +8,20 @@
 
         <v-col>
           <v-textarea
+            v-model="inputJapanese"
             name="input-japanese"
             label="日本語で返答する"
             hint="日本語で入力してください"
           ></v-textarea>
           <v-textarea
+            v-model="inputForeign"
             name="input-foreign"
             label="外国語で返答する"
             hint="外国語で入力してください"
           ></v-textarea>
-          <!-- <router-link to="/answer"> -->
           <v-btn color="accent" elevation="6" large @click="fetchTranslation"
             >回答する</v-btn
           >
-          <!-- </router-link> -->
         </v-col>
       </v-col>
     </v-row>
@@ -40,12 +40,11 @@ export default {
   },
   methods: {
     ...mapActions("questions", ["fetchQuestion"]),
-    fetchTranslation() {
-      axios
-        .get("http://localhost:3000/translate", {
-          params: { text: "こんにちは", target_lang: "EN" },
-        })
-        .then((response) => console.log(response.data));
+    async fetchTranslation() {
+      const res = await axios.get("http://localhost:3000/translate", {
+        params: { text: this.inputJapanese, target_lang: "EN" },
+      });
+      console.log(res.data);
     },
   },
   mounted() {
