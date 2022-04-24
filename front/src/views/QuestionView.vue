@@ -6,6 +6,16 @@
         <br />
         {{ question.body }}
 
+        <v-col class="d-flex" cols="12" sm="6">
+          <v-select
+            v-model="targetLang"
+            :items="languages"
+            item-text="label"
+            item-value="property"
+            label="言語を選択"
+          ></v-select>
+        </v-col>
+
         <v-col>
           <v-textarea
             v-model="inputJapanese"
@@ -29,12 +39,17 @@
 </template>
 
 <script>
+import { LANGUAGES } from "../const/languages";
 import { mapGetters, mapActions } from "vuex";
 import axios from "axios";
 
 export default {
   name: "QuestionView",
-
+  data() {
+    return {
+      languages: LANGUAGES,
+    };
+  },
   computed: {
     ...mapGetters("questions", ["question"]),
   },
@@ -42,7 +57,7 @@ export default {
     ...mapActions("questions", ["fetchQuestion"]),
     async fetchTranslation() {
       const res = await axios.get("http://localhost:3000/translate", {
-        params: { text: this.inputJapanese, target_lang: "EN" },
+        params: { text: this.inputJapanese, target_lang: this.targetLang },
       });
       console.log(res.data);
     },
