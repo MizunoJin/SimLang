@@ -13,9 +13,9 @@
             item-text="label"
             item-value="property"
             label="言語を選択"
+            @change="setLanguage"
           ></v-select>
         </v-col>
-
         <v-col>
           <v-textarea
             v-model="inputJapanese"
@@ -52,9 +52,11 @@ export default {
   },
   computed: {
     ...mapGetters("questions", ["question"]),
+    ...mapGetters("language", ["targetLang"]),
   },
   methods: {
     ...mapActions("questions", ["fetchQuestion"]),
+    ...mapActions("language", ["setLanguage"]),
     async fetchTranslation() {
       const res = await axios.get("http://localhost:3000/translate", {
         params: { text: this.inputJapanese, target_lang: this.targetLang },
