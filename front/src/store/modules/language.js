@@ -1,7 +1,5 @@
-import { LANGUAGES } from "@/const/languages";
-
 const state = {
-  language: null,
+  language: localStorage.targetLang || null,
 };
 
 const getters = {
@@ -14,10 +12,8 @@ const mutations = {
 
 const actions = {
   async setLanguage({ commit }, property) {
-    const language = LANGUAGES.find((lang) => {
-      return lang.property === property;
-    });
-    commit("setLanguage", language.property);
+    localStorage.setItem("targetLang", property);
+    commit("setLanguage", property);
   },
 };
 
