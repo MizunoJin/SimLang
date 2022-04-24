@@ -8,14 +8,14 @@ RSpec.describe 'Questions', type: :request do
   describe 'GET /index' do
     it 'returns 200 response' do
       get questions_path
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 
   describe 'SHOW /:id' do
     it 'returns 200 response' do
       get question_path(question)
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 end

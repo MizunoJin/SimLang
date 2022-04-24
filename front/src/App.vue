@@ -1,27 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <router-link to="/">
+        <div class="d-flex align-center text-h4 white--text">SimLang</div>
+      </router-link>
+
+      <v-spacer></v-spacer>
+
+      <router-link to="/about"
+        ><div class="text-h6 white--text">SimLangとは?</div></router-link
+      >
+    </v-app-bar>
+
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
-
-export default defineComponent({
+<script>
+export default {
   name: "App",
-  components: {
-    HelloWorld,
-  },
-});
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
