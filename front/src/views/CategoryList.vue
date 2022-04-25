@@ -2,9 +2,9 @@
   <v-container>
     <v-list class="d-flex">
       <category-card
-        v-for="question in questions"
-        :key="question.id"
-        :question="question"
+        v-for="category in categories"
+        :key="category.id"
+        :category="category"
       ></category-card>
     </v-list>
   </v-container>
@@ -20,13 +20,13 @@ export default {
     CategoryCard,
   },
   computed: {
-    ...mapGetters("questions", ["questions"]),
+    ...mapGetters("categories", ["categories"]),
   },
   methods: {
-    ...mapActions("questions", ["fetchQuestions"]),
+    ...mapActions("categories", ["fetchCategories"]),
   },
   mounted() {
-    this.fetchQuestions();
+    this.fetchCategories();
   },
 };
 </script>

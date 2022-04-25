@@ -5,14 +5,14 @@
       height="200px"
     ></v-img>
 
-    <v-card-title>{{ question.title }}</v-card-title>
+    <v-card-title>{{ category.title }}</v-card-title>
 
-    <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
+    <v-card-subtitle>{{ category.description }}</v-card-subtitle>
 
     <v-card-actions>
       <v-btn
         color="accent"
-        :to="{ name: 'question', params: { id: question.id } }"
+        :to="{ name: 'category', params: { id: category.id } }"
       >
         挑戦する
       </v-btn>
@@ -27,6 +27,6 @@ export default {
       show: null,
     };
   },
-  props: ["question"],
+  props: ["category"],
 };
 </script>
