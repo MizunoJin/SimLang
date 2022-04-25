@@ -19,10 +19,10 @@ const routes = [
     },
   },
   {
-    path: "/questions",
-    name: "questions",
+    path: "/categories",
+    name: "categories",
     component: function () {
-      return import("../views/QuestionList.vue");
+      return import("../views/CategoryList.vue");
     },
   },
   {

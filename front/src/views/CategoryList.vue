@@ -1,23 +1,23 @@
 <template>
   <v-container>
     <v-list class="d-flex">
-      <question-card
+      <category-card
         v-for="question in questions"
         :key="question.id"
         :question="question"
-      ></question-card>
+      ></category-card>
     </v-list>
   </v-container>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import QuestionCard from "../components/questions/QuestionCard.vue";
+import CategoryCard from "../components/categories/CategoryCard.vue";
 
 export default {
-  name: "QuestionList",
+  name: "CategoryList",
   components: {
-    QuestionCard,
+    CategoryCard,
   },
   computed: {
     ...mapGetters("questions", ["questions"]),
