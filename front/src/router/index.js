@@ -26,6 +26,13 @@ const routes = [
     },
   },
   {
+    path: "/category/:id",
+    name: "category",
+    component: function () {
+      return import("../views/CategoryView.vue");
+    },
+  },
+  {
     path: "/question/:id",
     name: "question",
     component: function () {

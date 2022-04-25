@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    render json: Category.find(params[:id])
+    category = Category.find(params[:id])
+    render json: { category: category, questions: category.questions }
   end
 end

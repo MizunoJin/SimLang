@@ -12,7 +12,7 @@
     <v-card-actions>
       <v-btn
         color="accent"
-        :to="{ name: 'category', params: { id: category.id } }"
+        :to="{ name: 'question', params: { id: category.id } }"
       >
         挑戦する
       </v-btn>
