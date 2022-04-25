@@ -26,10 +26,27 @@
           <v-textarea
             v-model="inputForeign"
             name="input-foreign"
-            label="外国語で返答する"
+            label="あなたの回答"
             hint="外国語で入力してください"
           ></v-textarea>
-          <v-btn color="accent" elevation="6" large @click="fetchTranslation"
+          <v-textarea
+            v-show="answer"
+            v-model="answer"
+            name="answer"
+            label="回答"
+            background-color="blue lighten-5"
+            disabled
+          ></v-textarea>
+          <v-btn
+            color="accent"
+            elevation="6"
+            large
+            :loading="loading"
+            :disabled="loading"
+            @click="
+              fetchTranslation();
+              loader = 'loading';
+            "
             >回答する</v-btn
           >
         </v-col>
@@ -48,6 +65,11 @@ export default {
   data() {
     return {
       languages: LANGUAGES,
+      answer: null,
+      inputJapanese: null,
+      inputForeign: null,
+      loader: null,
+      loading: false,
     };
   },
   computed: {
@@ -58,14 +80,28 @@ export default {
     ...mapActions("questions", ["fetchQuestion"]),
     ...mapActions("language", ["setLanguage"]),
     async fetchTranslation() {
+      const l = this.loader;
+      this[l] = !this[l];
       const res = await axios.get("http://localhost:3000/translate", {
         params: { text: this.inputJapanese, target_lang: this.targetLang },
       });
-      console.log(res.data);
+      this.answer = res.data.text;
+      this[l] = false;
+      this.loader = null;
     },
   },
   mounted() {
     this.fetchQuestion(this.$route.params.id);
+  },
+  watch: {
+    loader() {
+      const l = this.loader;
+      this[l] = !this[l];
+
+      setTimeout(() => (this[l] = false), 3000);
+
+      this.loader = null;
+    },
   },
 };
 </script>
