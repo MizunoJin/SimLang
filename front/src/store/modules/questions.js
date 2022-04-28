@@ -26,6 +26,9 @@ const actions = {
     const response = await axios.get(`${apiUrl}/questions/${id}`);
     commit("setQuestion", response.data);
   },
+  async setQuestion({ commit }, question) {
+    commit("setQuestion", question);
+  },
 };
 
 export default {

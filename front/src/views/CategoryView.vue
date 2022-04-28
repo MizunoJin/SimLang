@@ -20,7 +20,7 @@
 
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
-          {{ category.category.title }}
+          {{ question.title }}
         </h1>
         <br />
 
@@ -92,10 +92,12 @@ export default {
   },
   computed: {
     ...mapGetters("categories", ["category"]),
+    ...mapGetters("questions", ["question"]),
     ...mapGetters("language", ["targetLang"]),
   },
   methods: {
     ...mapActions("categories", ["fetchCategory"]),
+    ...mapActions("questions", ["setQuestion"]),
     ...mapActions("language", ["setLanguage"]),
     async fetchTranslation() {
       const l = this.loader;
@@ -108,8 +110,9 @@ export default {
       this.loader = null;
     },
   },
-  mounted() {
+  created() {
     this.fetchCategory(this.$route.params.id);
+    this.setQuestion(this.category.questions[0]);
   },
   watch: {
     loader() {
