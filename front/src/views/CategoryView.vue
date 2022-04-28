@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="py-15">
     <v-row class="text-center">
       <v-card elevation="12" width="256">
         <v-navigation-drawer floating permanent>
