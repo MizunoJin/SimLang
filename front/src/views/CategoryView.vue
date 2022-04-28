@@ -1,10 +1,28 @@
 <template>
   <v-container>
     <v-row class="text-center">
+      <v-card elevation="12" width="256">
+        <v-navigation-drawer floating permanent>
+          <v-list
+            v-for="question in category.questions"
+            :key="question.id"
+            dense
+            rounded
+          >
+            <v-list-item link>
+              <v-list-item-icon>
+                <v-icon>{{ question.title }}</v-icon>
+              </v-list-item-icon>
+            </v-list-item>
+          </v-list>
+        </v-navigation-drawer>
+      </v-card>
+
       <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">{{ question.title }}</h1>
+        <h1 class="display-2 font-weight-bold mb-3">
+          {{ category.category.title }}
+        </h1>
         <br />
-        {{ question.body }}
 
         <v-col class="d-flex" cols="12" sm="6">
           <v-select
@@ -73,11 +91,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("questions", ["question"]),
+    ...mapGetters("categories", ["category"]),
     ...mapGetters("language", ["targetLang"]),
   },
   methods: {
-    ...mapActions("questions", ["fetchQuestion"]),
+    ...mapActions("categories", ["fetchCategory"]),
     ...mapActions("language", ["setLanguage"]),
     async fetchTranslation() {
       const l = this.loader;
@@ -91,7 +109,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchQuestion(this.$route.params.id);
+    this.fetchCategory(this.$route.params.id);
   },
   watch: {
     loader() {
