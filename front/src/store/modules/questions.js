@@ -4,7 +4,7 @@ const apiUrl = "http://localhost:3000";
 
 const state = {
   questions: [],
-  question: null,
+  question: localStorage.question || null,
 };
 
 const getters = {
@@ -27,6 +27,7 @@ const actions = {
     commit("setQuestion", response.data);
   },
   async setQuestion({ commit }, question) {
+    localStorage.setItem("question", question);
     commit("setQuestion", question);
   },
 };
