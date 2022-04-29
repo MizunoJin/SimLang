@@ -20,7 +20,8 @@
 
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
-          {{ question.title }}
+          # TODO: あまりスマートではないため要リファクタリング
+          {{ question ? question.title : category.questions[0].title }}
         </h1>
         <br />
 
@@ -112,7 +113,6 @@ export default {
   },
   created() {
     this.fetchCategory(this.$route.params.id);
-    this.setQuestion(this.category.questions[0]);
   },
   watch: {
     loader() {
