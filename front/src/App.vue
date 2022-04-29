@@ -16,7 +16,7 @@
       <router-view />
     </v-main>
 
-    <v-footer v-bind="localAttrs" :padless="padless">
+    <v-footer v-bind="localAttrs" :padless="padless" class="mt-15">
       <v-card flat tile width="100%" color="primary" class="text-center">
         <v-card-text>
           <v-btn v-for="icon in icons" :key="icon" class="mx-4" icon>
@@ -29,7 +29,7 @@
         <v-divider></v-divider>
 
         <v-card-text class="white--text">
-          {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+          {{ new Date().getFullYear() }} — <strong>SimLang</strong>
         </v-card-text>
       </v-card>
     </v-footer>
