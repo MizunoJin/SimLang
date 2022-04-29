@@ -6,11 +6,13 @@
     <v-row class="text-center">
       <question-list :questions="category.questions"> </question-list>
       <v-col class="mb-4">
+        {{ category.category.title }}
+
         <h1 class="display-2 font-weight-bold mb-3">
-          <!-- TODO: あまりスマートではないため要リファクタリング -->
-          {{ question ? question.title : category.questions[0].title }}
+          {{ question.title }}
         </h1>
         <br />
+        {{ question.body }}
 
         <v-col class="d-flex" cols="12" sm="6">
           <language-select> </language-select>
@@ -70,11 +72,19 @@ export default {
   },
   computed: {
     ...mapGetters("categories", ["category"]),
-    ...mapGetters("questions", ["question"]),
     ...mapGetters("language", ["targetLang"]),
+    question() {
+      if (
+        !this.category.questions.includes(this.$store.state.questions.question)
+      ) {
+        this.setQuestion(this.category.questions[0]);
+      }
+      return this.$store.state.questions.question;
+    },
   },
   methods: {
     ...mapActions("categories", ["fetchCategory"]),
+    ...mapActions("questions", ["setQuestion"]),
     updateAnswer(answer) {
       this.answer = answer;
     },
