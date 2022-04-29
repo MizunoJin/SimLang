@@ -20,7 +20,7 @@
 
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
-          # TODO: あまりスマートではないため要リファクタリング
+          <!-- TODO: あまりスマートではないため要リファクタリング -->
           {{ question ? question.title : category.questions[0].title }}
         </h1>
         <br />
