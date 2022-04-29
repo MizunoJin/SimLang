@@ -3,7 +3,9 @@
     <v-navigation-drawer floating permanent>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="text-h6"> Question </v-list-item-title>
+          <v-list-item-title class="text-h6">
+            {{ category.title }}
+          </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -23,7 +25,7 @@
 <script>
 import { mapActions } from "vuex";
 export default {
-  props: ["questions"],
+  props: ["questions", "category"],
   methods: {
     ...mapActions("questions", ["setQuestion"]),
   },

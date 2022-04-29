@@ -4,10 +4,12 @@
       <v-icon dark left> mdi-arrow-left </v-icon>一覧に戻る
     </v-btn>
     <v-row class="text-center">
-      <question-list :questions="category.questions"> </question-list>
+      <question-list
+        :questions="category.questions"
+        :category="category.category"
+      >
+      </question-list>
       <v-col class="mb-4">
-        {{ category.category.title }}
-
         <h1 class="display-2 font-weight-bold mb-3">
           {{ question.title }}
         </h1>
