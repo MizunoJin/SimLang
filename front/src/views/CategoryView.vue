@@ -1,5 +1,8 @@
 <template>
-  <v-container class="py-15">
+  <v-container>
+    <v-btn class="ma-10" color="accent" :to="{ name: 'categories' }">
+      <v-icon dark left> mdi-arrow-left </v-icon>一覧に戻る
+    </v-btn>
     <v-row class="text-center">
       <question-list :questions="category.questions"> </question-list>
       <v-col class="mb-4">
@@ -36,7 +39,6 @@
           <v-btn
             color="accent"
             elevation="6"
-            large
             :loading="loading"
             :disabled="loading"
             @click="
