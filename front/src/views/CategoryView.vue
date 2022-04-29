@@ -10,14 +10,7 @@
         <br />
 
         <v-col class="d-flex" cols="12" sm="6">
-          <v-select
-            v-model="targetLang"
-            :items="languages"
-            item-text="label"
-            item-value="property"
-            label="言語を選択"
-            @change="setLanguage"
-          ></v-select>
+          <language-select> </language-select>
         </v-col>
         <v-col>
           <v-textarea
@@ -60,7 +53,7 @@
 
 <script>
 import QuestionList from "../components/questions/QuestionList.vue";
-import { LANGUAGES } from "../const/languages";
+import LanguageSelect from "../components/languages/LanguageSelect.vue";
 import { mapGetters, mapActions } from "vuex";
 import axios from "axios";
 
@@ -68,10 +61,10 @@ export default {
   name: "QuestionView",
   components: {
     QuestionList,
+    LanguageSelect,
   },
   data() {
     return {
-      languages: LANGUAGES,
       answer: null,
       inputJapanese: null,
       inputForeign: null,
@@ -86,7 +79,6 @@ export default {
   },
   methods: {
     ...mapActions("categories", ["fetchCategory"]),
-    ...mapActions("language", ["setLanguage"]),
     async fetchTranslation() {
       const l = this.loader;
       this[l] = !this[l];
