@@ -19,17 +19,17 @@ const routes = [
     },
   },
   {
-    path: "/questions",
-    name: "questions",
+    path: "/categories",
+    name: "categories",
     component: function () {
-      return import("../views/QuestionList.vue");
+      return import("../views/CategoryList.vue");
     },
   },
   {
-    path: "/question/:id",
-    name: "question",
+    path: "/categories/:id",
+    name: "category",
     component: function () {
-      return import("../views/QuestionView.vue");
+      return import("../views/CategoryView.vue");
     },
   },
 ];

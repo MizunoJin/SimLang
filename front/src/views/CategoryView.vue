@@ -1,20 +1,16 @@
 <template>
-  <v-container>
+  <v-container class="py-15">
     <v-row class="text-center">
+      <question-list :questions="category.questions"> </question-list>
       <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">{{ question.title }}</h1>
+        <h1 class="display-2 font-weight-bold mb-3">
+          <!-- TODO: あまりスマートではないため要リファクタリング -->
+          {{ question ? question.title : category.questions[0].title }}
+        </h1>
         <br />
-        {{ question.body }}
 
         <v-col class="d-flex" cols="12" sm="6">
-          <v-select
-            v-model="targetLang"
-            :items="languages"
-            item-text="label"
-            item-value="property"
-            label="言語を選択"
-            @change="setLanguage"
-          ></v-select>
+          <language-select> </language-select>
         </v-col>
         <v-col>
           <v-textarea
@@ -56,15 +52,19 @@
 </template>
 
 <script>
-import { LANGUAGES } from "../const/languages";
+import QuestionList from "../components/questions/QuestionList.vue";
+import LanguageSelect from "../components/languages/LanguageSelect.vue";
 import { mapGetters, mapActions } from "vuex";
 import axios from "axios";
 
 export default {
   name: "QuestionView",
+  components: {
+    QuestionList,
+    LanguageSelect,
+  },
   data() {
     return {
-      languages: LANGUAGES,
       answer: null,
       inputJapanese: null,
       inputForeign: null,
@@ -73,12 +73,12 @@ export default {
     };
   },
   computed: {
+    ...mapGetters("categories", ["category"]),
     ...mapGetters("questions", ["question"]),
     ...mapGetters("language", ["targetLang"]),
   },
   methods: {
-    ...mapActions("questions", ["fetchQuestion"]),
-    ...mapActions("language", ["setLanguage"]),
+    ...mapActions("categories", ["fetchCategory"]),
     async fetchTranslation() {
       const l = this.loader;
       this[l] = !this[l];
@@ -90,8 +90,8 @@ export default {
       this.loader = null;
     },
   },
-  mounted() {
-    this.fetchQuestion(this.$route.params.id);
+  created() {
+    this.fetchCategory(this.$route.params.id);
   },
   watch: {
     loader() {

@@ -4,5 +4,6 @@ FactoryBot.define do
   factory :question do
     title { 'sample question' }
     body { 'What is this question?' }
+    category
   end
 end
