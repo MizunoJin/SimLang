@@ -4,14 +4,18 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="text-h6">
-            {{ category.title }}
+            {{ category.category.title }}
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
       <v-divider></v-divider>
-
-      <v-list v-for="question in questions" :key="question.id" dense rounded>
+      <v-list
+        v-for="question in category.questions"
+        :key="question.id"
+        dense
+        rounded
+      >
         <v-list-item link @click="setQuestion(question)">
           <v-list-item-icon>
             {{ question.title }}
@@ -23,9 +27,11 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
-  props: ["questions", "category"],
+  computed: {
+    ...mapGetters("categories", ["category"]),
+  },
   methods: {
     ...mapActions("questions", ["setQuestion"]),
   },
