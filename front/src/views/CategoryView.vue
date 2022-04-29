@@ -36,17 +36,12 @@
             background-color="blue lighten-5"
             disabled
           ></v-textarea>
-          <v-btn
-            color="accent"
-            elevation="6"
-            :loading="loading"
-            :disabled="loading"
-            @click="
-              fetchTranslation();
-              loader = 'loading';
-            "
-            >回答する</v-btn
+          <answer-button
+            @updateAnswer="updateAnswer"
+            :inputJapanese="inputJapanese"
+            :targetLang="targetLang"
           >
+          </answer-button>
         </v-col>
       </v-col>
     </v-row>
@@ -56,22 +51,21 @@
 <script>
 import QuestionList from "../components/questions/QuestionList.vue";
 import LanguageSelect from "../components/languages/LanguageSelect.vue";
+import AnswerButton from "../components/buttons/AnswerButton.vue";
 import { mapGetters, mapActions } from "vuex";
-import axios from "axios";
 
 export default {
   name: "QuestionView",
   components: {
     QuestionList,
     LanguageSelect,
+    AnswerButton,
   },
   data() {
     return {
       answer: null,
       inputJapanese: null,
       inputForeign: null,
-      loader: null,
-      loading: false,
     };
   },
   computed: {
@@ -81,29 +75,12 @@ export default {
   },
   methods: {
     ...mapActions("categories", ["fetchCategory"]),
-    async fetchTranslation() {
-      const l = this.loader;
-      this[l] = !this[l];
-      const res = await axios.get("http://localhost:3000/translate", {
-        params: { text: this.inputJapanese, target_lang: this.targetLang },
-      });
-      this.answer = res.data.text;
-      this[l] = false;
-      this.loader = null;
+    updateAnswer(answer) {
+      this.answer = answer;
     },
   },
   created() {
     this.fetchCategory(this.$route.params.id);
-  },
-  watch: {
-    loader() {
-      const l = this.loader;
-      this[l] = !this[l];
-
-      setTimeout(() => (this[l] = false), 3000);
-
-      this.loader = null;
-    },
   },
 };
 </script>
