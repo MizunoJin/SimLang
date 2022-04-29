@@ -32,13 +32,6 @@ const routes = [
       return import("../views/CategoryView.vue");
     },
   },
-  {
-    path: "/question/:id",
-    name: "question",
-    component: function () {
-      return import("../views/QuestionView.vue");
-    },
-  },
 ];
 
 const router = new VueRouter({
