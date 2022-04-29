@@ -1,23 +1,7 @@
 <template>
   <v-container class="py-15">
     <v-row class="text-center">
-      <v-card elevation="12" width="256">
-        <v-navigation-drawer floating permanent>
-          <v-list
-            v-for="question in category.questions"
-            :key="question.id"
-            dense
-            rounded
-          >
-            <v-list-item link @click="setQuestion(question)">
-              <v-list-item-icon>
-                <v-icon>{{ question.title }}</v-icon>
-              </v-list-item-icon>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>
-      </v-card>
-
+      <question-list :questions="category.questions"> </question-list>
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
           <!-- TODO: あまりスマートではないため要リファクタリング -->
@@ -75,12 +59,16 @@
 </template>
 
 <script>
+import QuestionList from "../components/questions/QuestionList.vue";
 import { LANGUAGES } from "../const/languages";
 import { mapGetters, mapActions } from "vuex";
 import axios from "axios";
 
 export default {
   name: "QuestionView",
+  components: {
+    QuestionList,
+  },
   data() {
     return {
       languages: LANGUAGES,
@@ -98,7 +86,6 @@ export default {
   },
   methods: {
     ...mapActions("categories", ["fetchCategory"]),
-    ...mapActions("questions", ["setQuestion"]),
     ...mapActions("language", ["setLanguage"]),
     async fetchTranslation() {
       const l = this.loader;
