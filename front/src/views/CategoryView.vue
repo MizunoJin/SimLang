@@ -9,7 +9,7 @@
             dense
             rounded
           >
-            <v-list-item link>
+            <v-list-item link @click="setQuestion(question)">
               <v-list-item-icon>
                 <v-icon>{{ question.title }}</v-icon>
               </v-list-item-icon>
