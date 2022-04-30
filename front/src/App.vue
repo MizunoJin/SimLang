@@ -33,7 +33,7 @@
       <router-view />
     </v-main>
 
-    <v-footer v-bind="localAttrs" :padless="padless" class="mt-15">
+    <v-footer v-bind="localAttrs" :padless="true">
       <v-card flat tile width="100%" color="primary" class="text-center">
         <v-card-text>
           <v-btn v-for="icon in icons" :key="icon" class="mx-4" icon>

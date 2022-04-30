@@ -1,12 +1,12 @@
 <template>
   <v-container>
-    <v-list class="d-flex">
+    <div class="d-flex">
       <category-card
         v-for="category in categories"
         :key="category.id"
         :category="category"
       ></category-card>
-    </v-list>
+    </div>
   </v-container>
 </template>
 
