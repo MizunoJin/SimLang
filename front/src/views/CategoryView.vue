@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-btn class="ma-10" color="accent" :to="{ name: 'categories' }">
+    <v-btn class="ma-10" color="accent" :to="{ name: 'home' }">
       <v-icon dark left> mdi-arrow-left </v-icon>一覧に戻る
     </v-btn>
     <v-row class="text-center">
