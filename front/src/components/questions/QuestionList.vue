@@ -1,5 +1,5 @@
 <template>
-  <v-card elevation="12" width="256">
+  <v-card elevation="12" width="256" rounded="lg">
     <v-navigation-drawer floating permanent>
       <v-list-item>
         <v-list-item-content>

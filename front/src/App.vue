@@ -29,7 +29,7 @@
       </v-container>
     </v-app-bar>
 
-    <v-main>
+    <v-main class="grey lighten-3">
       <router-view />
     </v-main>
 

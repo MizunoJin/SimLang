@@ -6,43 +6,45 @@
     <v-row class="text-center">
       <question-list> </question-list>
       <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          {{ question.title }}
-        </h1>
-        <br />
-        {{ question.body }}
+        <v-sheet min-height="70vh" rounded="lg">
+          <h1 class="display-2 font-weight-bold mb-3">
+            {{ question.title }}
+          </h1>
+          <br />
+          {{ question.body }}
 
-        <v-col class="d-flex" cols="12" sm="6">
-          <language-select> </language-select>
-        </v-col>
-        <v-col>
-          <v-textarea
-            v-model="inputJapanese"
-            name="input-japanese"
-            label="日本語で返答する"
-            hint="日本語で入力してください"
-          ></v-textarea>
-          <v-textarea
-            v-model="inputForeign"
-            name="input-foreign"
-            label="あなたの回答"
-            hint="外国語で入力してください"
-          ></v-textarea>
-          <v-textarea
-            v-show="answer"
-            v-model="answer"
-            name="answer"
-            label="回答"
-            background-color="blue lighten-5"
-            disabled
-          ></v-textarea>
-          <answer-button
-            @updateAnswer="updateAnswer"
-            :inputJapanese="inputJapanese"
-            :targetLang="targetLang"
-          >
-          </answer-button>
-        </v-col>
+          <v-col class="d-flex" cols="12" sm="6">
+            <language-select> </language-select>
+          </v-col>
+          <v-col>
+            <v-textarea
+              v-model="inputJapanese"
+              name="input-japanese"
+              label="日本語で返答する"
+              hint="日本語で入力してください"
+            ></v-textarea>
+            <v-textarea
+              v-model="inputForeign"
+              name="input-foreign"
+              label="あなたの回答"
+              hint="外国語で入力してください"
+            ></v-textarea>
+            <v-textarea
+              v-show="answer"
+              v-model="answer"
+              name="answer"
+              label="回答"
+              background-color="blue lighten-5"
+              disabled
+            ></v-textarea>
+            <answer-button
+              @updateAnswer="updateAnswer"
+              :inputJapanese="inputJapanese"
+              :targetLang="targetLang"
+            >
+            </answer-button>
+          </v-col>
+        </v-sheet>
       </v-col>
     </v-row>
   </v-container>
