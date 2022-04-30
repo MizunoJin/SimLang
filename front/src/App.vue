@@ -1,15 +1,32 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <router-link to="/">
-        <div class="d-flex align-center text-h4 white--text">SimLang</div>
-      </router-link>
+    <v-app-bar app color="primary" flat>
+      <v-container class="py-0 fill-height">
+        <router-link to="/">
+          <v-avatar
+            class="mr-10"
+            color="grey darken-1"
+            size="32"
+            to="/"
+          ></v-avatar>
+        </router-link>
 
-      <v-spacer></v-spacer>
+        <v-btn v-for="link in links" :key="link" text>
+          {{ link }}
+        </v-btn>
 
-      <router-link to="/about"
-        ><div class="text-h6 white--text">SimLangとは?</div></router-link
-      >
+        <v-spacer></v-spacer>
+
+        <v-responsive max-width="260">
+          <v-text-field
+            dense
+            flat
+            hide-details
+            rounded
+            solo-inverted
+          ></v-text-field>
+        </v-responsive>
+      </v-container>
     </v-app-bar>
 
     <v-main>
@@ -44,6 +61,7 @@ export default {
     items: ["default", "absolute", "fixed"],
     padless: false,
     variant: "default",
+    links: ["Dashboard", "Messages", "Profile", "Updates"],
   }),
   computed: {
     localAttrs() {
