@@ -30,7 +30,8 @@ export default {
         params: {
           japanese_text: this.inputJapanese,
           foreign_text: this.inputForeign,
-          language: this.language,
+          translation_lang: this.language.translation_lang,
+          check_lang: this.language.check_lang,
         },
       });
       this.$emit("updateAnswer", res.data.text);

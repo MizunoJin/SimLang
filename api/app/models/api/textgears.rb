@@ -23,7 +23,7 @@ module Api
     def set_url(text:, language:)
       uri = URI.parse("https://api.textgears.com/grammar")
       uri.query = URI.encode_www_form({ key: Rails.application.credentials.textgears[:auth_key], text: text,
-                                        language: "es-ES" })
+                                        language: language })
       uri
     end
 
