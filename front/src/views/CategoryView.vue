@@ -62,7 +62,7 @@
               @updateAnswer="updateAnswer"
               :inputJapanese="inputJapanese"
               :inputForeign="inputForeign"
-              :targetLang="targetLang"
+              :language="language"
             >
             </answer-button>
           </v-col>
@@ -94,7 +94,7 @@ export default {
   },
   computed: {
     ...mapGetters("categories", ["category"]),
-    ...mapGetters("language", ["targetLang"]),
+    ...mapGetters("language", ["language"]),
     question() {
       if (
         !this.category.questions.includes(this.$store.state.questions.question)

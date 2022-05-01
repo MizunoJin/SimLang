@@ -1,9 +1,9 @@
 const state = {
-  language: localStorage.targetLang || null,
+  language: localStorage.language || null,
 };
 
 const getters = {
-  targetLang: (state) => state.language,
+  language: (state) => state.language,
 };
 
 const mutations = {
@@ -12,7 +12,7 @@ const mutations = {
 
 const actions = {
   async setLanguage({ commit }, property) {
-    localStorage.setItem("targetLang", property);
+    localStorage.setItem("language", property);
     commit("setLanguage", property);
   },
 };

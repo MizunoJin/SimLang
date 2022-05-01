@@ -21,7 +21,7 @@ export default {
       loading: false,
     };
   },
-  props: ["inputJapanese", "inputForeign", "targetLang"],
+  props: ["inputJapanese", "inputForeign", "language"],
   methods: {
     async fetchAnswer() {
       const l = this.loader;
@@ -30,7 +30,7 @@ export default {
         params: {
           japanese_text: this.inputJapanese,
           foreign_text: this.inputForeign,
-          target_lang: this.targetLang,
+          language: this.language,
         },
       });
       this.$emit("updateAnswer", res.data.text);

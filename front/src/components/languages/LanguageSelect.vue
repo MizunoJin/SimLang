@@ -1,6 +1,6 @@
 <template>
   <v-select
-    v-model="targetLang"
+    v-model="language"
     :items="languages"
     item-text="label"
     item-value="property"
@@ -19,7 +19,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("language", ["targetLang"]),
+    ...mapGetters("language", ["language"]),
   },
   methods: {
     ...mapActions("language", ["setLanguage"]),

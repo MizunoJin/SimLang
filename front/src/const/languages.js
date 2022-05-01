@@ -1,27 +1,46 @@
 export const LANGUAGES = [
-  { property: "EN-GB", label: "英語(イギリス)" },
-  { property: "EN-US", label: "英語(アメリカ)" },
-  { property: "FR", label: "フランス語" },
-  { property: "ZH", label: "中国語" },
-  { property: "ES", label: "スペイン語" },
-  { property: "RU", label: "ロシア語" },
-  { property: "DE", label: "ドイツ語" },
-  { property: "IT", label: "イタリア語" },
-  { property: "PT-PT", label: "ポルトガル語（ポルトガル）" },
-  { property: "PT-BR", label: "ポルトガル語(ブラジル)" },
-  { property: "CS", label: "チェコ語" },
-  { property: "DA", label: "デンマーク語" },
-  { property: "NL", label: "オランダ語" },
-  { property: "PL", label: "ポーランド語" },
-  { property: "BG", label: "ブルガリア語" },
-  { property: "EL", label: "ギリシャ語" },
-  { property: "ET", label: "エストニア語" },
-  { property: "FI", label: "フィンランド語" },
-  { property: "HU", label: "ハンガリー語" },
-  { property: "LT", label: "リトアニア語" },
-  { property: "LV", label: "ラトビア語" },
-  { property: "RO", label: "ルーマニア語" },
-  { property: "SK", label: "スロヴァキア語" },
-  { property: "SL", label: "スロベニア語" },
-  { property: "SV", label: "スウェーデン語" },
+  {
+    property: { grammar_lang: "en-GB", translation_lang: "EN-GB" },
+    label: "英語(イギリス)",
+  },
+  {
+    property: { grammar_lang: "en-US", translation_lang: "EN-US" },
+    label: "英語(アメリカ)",
+  },
+  {
+    property: { grammar_lang: "fr-FR", translation_lang: "FR" },
+    label: "フランス語",
+  },
+  {
+    property: { grammar_lang: "zh-CN", translation_lang: "ZH" },
+    label: "中国語",
+  },
+  {
+    property: { grammar_lang: "es-ES", translation_lang: "ES" },
+    label: "スペイン語",
+  },
+  {
+    property: { grammar_lang: "ru-RU", translation_lang: "RU" },
+    label: "ロシア語",
+  },
+  {
+    property: { grammar_lang: "de-DE", translation_lang: "DE" },
+    label: "ドイツ語",
+  },
+  {
+    property: { grammar_lang: "it-IT", translation_lang: "IT" },
+    label: "イタリア語",
+  },
+  {
+    property: { grammar_lang: "pt-PT", translation_lang: "PT-PT" },
+    label: "ポルトガル語（ポルトガル）",
+  },
+  {
+    property: { grammar_lang: "pt-BR", translation_lang: "PT-BR" },
+    label: "ポルトガル語(ブラジル)",
+  },
+  {
+    property: { grammar_lang: "el-GR", translation_lang: "EL" },
+    label: "ギリシャ語",
+  },
 ];
