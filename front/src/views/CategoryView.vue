@@ -8,7 +8,12 @@
         <question-list> </question-list>
       </v-col>
       <v-col>
-        <v-sheet min-height="70vh" rounded="lg" class="d-flex flex-wrap pa-8">
+        <v-sheet
+          min-height="70vh"
+          elevation="3"
+          rounded="lg"
+          class="d-flex flex-wrap pa-8"
+        >
           <v-col cols="12">
             <h1 class="display-2 font-weight-bold mb-3">
               {{ question.title }}
