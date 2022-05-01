@@ -3,5 +3,5 @@
 Rails.application.routes.draw do
   resources :categories, only: %i[index show]
   resources :questions, only: %i[index show]
-  get '/translate', to: 'translations#translate'
+  get '/fetch_answer', to: 'answers#fetch_answer'
 end

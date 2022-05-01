@@ -1,16 +1,18 @@
 <template>
-  <div class="d-flex">
-    <category-card
-      v-for="category in categories"
-      :key="category.id"
-      :category="category"
-    ></category-card>
-  </div>
+  <v-container>
+    <div class="d-flex">
+      <category-card
+        v-for="category in categories"
+        :key="category.id"
+        :category="category"
+      ></category-card>
+    </div>
+  </v-container>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import CategoryCard from "../components/categories/CategoryCard.vue";
+import CategoryCard from "./CategoryCard.vue";
 
 export default {
   name: "CategoryList",

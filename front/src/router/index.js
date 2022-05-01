@@ -12,20 +12,6 @@ const routes = [
     },
   },
   {
-    path: "/about",
-    name: "about",
-    component: function () {
-      return import("../views/AboutView.vue");
-    },
-  },
-  {
-    path: "/categories",
-    name: "categories",
-    component: function () {
-      return import("../views/CategoryList.vue");
-    },
-  },
-  {
     path: "/categories/:id",
     name: "category",
     component: function () {

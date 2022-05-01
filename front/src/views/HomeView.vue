@@ -7,18 +7,17 @@
         <p class="subheading font-weight-regular">
           SimLangはAIで他言語を学習できるサービスです。
         </p>
-        <v-btn color="primary" elevation="2">
-          <router-link to="/categories"
-            ><div class="text-h6 white--text">始める</div></router-link
-          >
-        </v-btn>
       </v-col>
     </v-row>
+    <category-list> </category-list>
   </v-container>
 </template>
 
 <script>
+import CategoryList from "../components/categories/CategoryList.vue";
+
 export default {
   name: "HomeView",
+  components: { CategoryList },
 };
 </script>
