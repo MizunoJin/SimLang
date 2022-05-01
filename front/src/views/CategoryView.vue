@@ -6,29 +6,36 @@
     <v-row class="text-center">
       <question-list> </question-list>
       <v-col class="mb-4">
-        <v-sheet min-height="70vh" rounded="lg">
-          <h1 class="display-2 font-weight-bold mb-3">
-            {{ question.title }}
-          </h1>
-          <br />
-          {{ question.body }}
+        <v-sheet min-height="70vh" rounded="lg" class="d-flex flex-wrap">
+          <v-col cols="12">
+            <h1 class="display-2 font-weight-bold mb-3">
+              {{ question.title }}
+            </h1>
+            <br />
+            {{ question.body }}
+          </v-col>
 
-          <v-col class="d-flex" cols="12" sm="6">
+          <v-col cols="12">
             <language-select> </language-select>
           </v-col>
-          <v-col>
+
+          <v-col cols="6">
             <v-textarea
               v-model="inputJapanese"
               name="input-japanese"
               label="日本語で返答する"
               hint="日本語で入力してください"
             ></v-textarea>
+          </v-col>
+          <v-col cols="6">
             <v-textarea
               v-model="inputForeign"
               name="input-foreign"
               label="あなたの回答"
               hint="外国語で入力してください"
             ></v-textarea>
+          </v-col>
+          <v-col cols="6">
             <v-textarea
               v-show="answer"
               v-model="answer"
@@ -37,6 +44,8 @@
               background-color="blue lighten-5"
               disabled
             ></v-textarea>
+          </v-col>
+          <v-col cols="12">
             <answer-button
               @updateAnswer="updateAnswer"
               :inputJapanese="inputJapanese"
