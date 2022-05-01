@@ -3,12 +3,13 @@
     <v-app-bar app color="primary" flat>
       <v-container class="py-0 fill-height">
         <router-link to="/">
-          <v-avatar
+          <v-img
             class="mr-10"
-            color="grey darken-1"
-            size="32"
-            to="/"
-          ></v-avatar>
+            src="/Icon/icon.iconset/icon_256x256.png"
+            height="36"
+            width="36"
+          >
+          </v-img>
         </router-link>
 
         <v-btn v-for="link in links" :key="link" text>
