@@ -15,8 +15,10 @@
             {{ question.body }}
           </v-col>
 
-          <v-col cols="12">
-            <language-select> </language-select>
+          <v-col cols="12" class="d-flex justify-center">
+            <v-col cols="6">
+              <language-select> </language-select>
+            </v-col>
           </v-col>
 
           <v-col cols="6">
@@ -33,6 +35,16 @@
               name="input-foreign"
               label="あなたの回答"
               hint="外国語で入力してください"
+            ></v-textarea>
+          </v-col>
+          <v-col cols="6">
+            <v-textarea
+              v-show="answer"
+              v-model="answer"
+              name="answer"
+              label="回答例"
+              background-color="blue lighten-5"
+              disabled
             ></v-textarea>
           </v-col>
           <v-col cols="6">
