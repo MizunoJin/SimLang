@@ -3,8 +3,10 @@
     <v-btn class="ma-10" color="accent" :to="{ name: 'home' }">
       <v-icon dark left> mdi-arrow-left </v-icon>一覧に戻る
     </v-btn>
-    <v-row class="text-center">
-      <question-list> </question-list>
+    <v-row class="text-center mb-10">
+      <v-col cols="2">
+        <question-list> </question-list>
+      </v-col>
       <v-col>
         <v-sheet min-height="70vh" rounded="lg" class="d-flex flex-wrap pa-8">
           <v-col cols="12">
