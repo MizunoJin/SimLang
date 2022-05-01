@@ -21,13 +21,17 @@ export default {
       loading: false,
     };
   },
-  props: ["inputJapanese", "targetLang"],
+  props: ["inputJapanese", "inputForeign", "targetLang"],
   methods: {
     async fetchAnswer() {
       const l = this.loader;
       this[l] = !this[l];
       const res = await axios.get("http://localhost:3000/fetch_answer", {
-        params: { text: this.inputJapanese, target_lang: this.targetLang },
+        params: {
+          japanese_text: this.inputJapanese,
+          foreign_text: this.inputForeign,
+          target_lang: this.targetLang,
+        },
       });
       this.$emit("updateAnswer", res.data.text);
     },

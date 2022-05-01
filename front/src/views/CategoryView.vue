@@ -61,6 +61,7 @@
             <answer-button
               @updateAnswer="updateAnswer"
               :inputJapanese="inputJapanese"
+              :inputForeign="inputForeign"
               :targetLang="targetLang"
             >
             </answer-button>
