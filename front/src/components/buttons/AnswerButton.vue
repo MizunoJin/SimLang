@@ -5,7 +5,7 @@
     :loading="loading"
     :disabled="loading"
     @click="
-      fetchTranslation();
+      fetchAnswer();
       loader = 'loading';
     "
     >回答する
@@ -23,10 +23,10 @@ export default {
   },
   props: ["inputJapanese", "targetLang"],
   methods: {
-    async fetchTranslation() {
+    async fetchAnswer() {
       const l = this.loader;
       this[l] = !this[l];
-      const res = await axios.get("http://localhost:3000/translate", {
+      const res = await axios.get("http://localhost:3000/fetch_answer", {
         params: { text: this.inputJapanese, target_lang: this.targetLang },
       });
       this.$emit("updateAnswer", res.data.text);
