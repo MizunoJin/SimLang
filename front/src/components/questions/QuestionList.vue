@@ -27,11 +27,9 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 export default {
-  computed: {
-    ...mapGetters("categories", ["category"]),
-  },
+  props: ["category"],
   methods: {
     ...mapActions("questions", ["setQuestion"]),
   },

@@ -5,7 +5,7 @@
     </v-btn>
     <v-row class="text-center mb-10">
       <v-col cols="2">
-        <question-list> </question-list>
+        <question-list :category="category"> </question-list>
       </v-col>
       <v-col>
         <v-sheet
@@ -80,6 +80,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import QuestionList from "../components/questions/QuestionList.vue";
 import LanguageSelect from "../components/languages/LanguageSelect.vue";
 import AnswerButton from "../components/buttons/AnswerButton.vue";
@@ -97,19 +98,13 @@ export default {
       answer: null,
       inputJapanese: null,
       inputForeign: null,
+      category: null,
     };
   },
   computed: {
     ...mapGetters("categories", ["category"]),
     ...mapGetters("language", ["language"]),
-    question() {
-      if (
-        !this.category.questions.includes(this.$store.state.questions.question)
-      ) {
-        this.setQuestion(this.category.questions[0]);
-      }
-      return this.$store.state.questions.question;
-    },
+    ...mapGetters("questions", ["question"]),
   },
   methods: {
     ...mapActions("categories", ["fetchCategory"]),
@@ -118,7 +113,12 @@ export default {
       this.answer = answer;
     },
   },
-  created() {
+  mounted() {
+    axios
+      .get(`http://localhost:3000/categories/${this.$route.params.id}`)
+      .then((response) => {
+        this.category = response.data;
+      });
     this.fetchCategory(this.$route.params.id);
   },
 };
