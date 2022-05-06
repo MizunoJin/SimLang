@@ -118,7 +118,10 @@ export default {
       .get(`http://localhost:3000/categories/${this.$route.params.id}`)
       .then((response) => {
         this.category = response.data;
-        if (this.question.category_id != this.category.category.id) {
+        if (
+          this.category.questions &&
+          this.question?.category_id != this.category.category.id
+        ) {
           this.setQuestion(this.category.questions[0]);
         }
       });
