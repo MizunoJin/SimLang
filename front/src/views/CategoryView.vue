@@ -113,13 +113,15 @@ export default {
       this.answer = answer;
     },
   },
-  mounted() {
+  created() {
     axios
       .get(`http://localhost:3000/categories/${this.$route.params.id}`)
       .then((response) => {
         this.category = response.data;
+        if (this.question.category_id != this.category.category.id) {
+          this.setQuestion(this.category.questions[0]);
+        }
       });
-    this.fetchCategory(this.$route.params.id);
   },
 };
 </script>
