@@ -3,10 +3,17 @@
     <v-btn class="ma-10" color="accent" :to="{ name: 'home' }">
       <v-icon dark left> mdi-arrow-left </v-icon>一覧に戻る
     </v-btn>
-    <v-row class="text-center">
-      <question-list> </question-list>
-      <v-col class="mb-4">
-        <v-sheet min-height="70vh" rounded="lg" class="d-flex flex-wrap">
+    <v-row class="text-center mb-10">
+      <v-col cols="2">
+        <question-list :category="category"> </question-list>
+      </v-col>
+      <v-col>
+        <v-sheet
+          min-height="70vh"
+          elevation="3"
+          rounded="lg"
+          class="d-flex flex-wrap pa-8"
+        >
           <v-col cols="12">
             <h1 class="display-2 font-weight-bold mb-3">
               {{ question.title }}
@@ -50,10 +57,10 @@
           <v-col cols="6">
             <v-textarea
               v-show="answer"
-              v-model="answer"
-              name="answer"
-              label="回答"
-              background-color="blue lighten-5"
+              v-model="check"
+              name="check"
+              label="文法チェック"
+              background-color="red lighten-5"
               disabled
             ></v-textarea>
           </v-col>
@@ -73,6 +80,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import QuestionList from "../components/questions/QuestionList.vue";
 import LanguageSelect from "../components/languages/LanguageSelect.vue";
 import AnswerButton from "../components/buttons/AnswerButton.vue";
@@ -90,29 +98,34 @@ export default {
       answer: null,
       inputJapanese: null,
       inputForeign: null,
+      category: null,
+      check: null,
     };
   },
   computed: {
-    ...mapGetters("categories", ["category"]),
     ...mapGetters("language", ["language"]),
-    question() {
-      if (
-        !this.category.questions.includes(this.$store.state.questions.question)
-      ) {
-        this.setQuestion(this.category.questions[0]);
-      }
-      return this.$store.state.questions.question;
-    },
+    ...mapGetters("questions", ["question"]),
   },
   methods: {
     ...mapActions("categories", ["fetchCategory"]),
     ...mapActions("questions", ["setQuestion"]),
-    updateAnswer(answer) {
-      this.answer = answer;
+    updateAnswer(response) {
+      this.answer = response.translation.text;
+      this.check = response.check;
     },
   },
   created() {
-    this.fetchCategory(this.$route.params.id);
+    axios
+      .get(`http://localhost:3000/categories/${this.$route.params.id}`)
+      .then((response) => {
+        this.category = response.data;
+        if (
+          this.category.questions &&
+          this.question?.category_id != this.category.category.id
+        ) {
+          this.setQuestion(this.category.questions[0]);
+        }
+      });
   },
 };
 </script>

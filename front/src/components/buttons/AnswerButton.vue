@@ -34,7 +34,7 @@ export default {
           check_lang: this.language.check_lang,
         },
       });
-      this.$emit("updateAnswer", res.data.text);
+      this.$emit("updateAnswer", res.data);
     },
   },
   watch: {

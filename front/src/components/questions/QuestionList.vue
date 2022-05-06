@@ -1,5 +1,5 @@
 <template>
-  <v-card elevation="12" width="256" rounded="lg">
+  <v-card elevation="3" width="256" rounded="lg">
     <v-navigation-drawer floating permanent>
       <v-list-item>
         <v-list-item-content>
@@ -27,11 +27,9 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 export default {
-  computed: {
-    ...mapGetters("categories", ["category"]),
-  },
+  props: ["category"],
   methods: {
     ...mapActions("questions", ["setQuestion"]),
   },

@@ -1,5 +1,5 @@
 const state = {
-  language: localStorage.language || null,
+  language: JSON.parse(localStorage.getItem("language")) || null,
 };
 
 const getters = {
@@ -12,7 +12,7 @@ const mutations = {
 
 const actions = {
   async setLanguage({ commit }, property) {
-    localStorage.setItem("language", property);
+    localStorage.setItem("language", JSON.stringify(property));
     commit("setLanguage", property);
   },
 };

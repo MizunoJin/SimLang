@@ -7,23 +7,23 @@ module Api
     require 'uri'
     require 'json'
 
-    attr_accessor :text, :target_lang
+    attr_accessor :text, :language
 
     validates :text, presence: true
-    validates :target_lang, presence: true
+    validates :language, presence: true
 
     def translate
-      uri = set_url(text: text, target_lang: target_lang)
+      uri = set_url(text: text, language: language)
       http = fetch_http(uri: uri)
       fetch_translation(uri: uri, http: http)
     end
 
     private
 
-    def set_url(text:, target_lang:)
+    def set_url(text:, language:)
       uri = URI.parse('https://api-free.deepl.com/v2/translate')
       uri.query = URI.encode_www_form({ auth_key: Rails.application.credentials.deepl[:auth_key], text: text,
-                                        target_lang: target_lang })
+                                        target_lang: language })
       uri
     end
 
