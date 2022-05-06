@@ -7,6 +7,6 @@ class AnswersController < ApplicationController
 
     deepl = Api::Deepl.new(text: params[:japanese_text], language: params[:translation_lang])
     translation = deepl.translate
-    render json: translation
+    render json: { translation: translation, check: check }
   end
 end

@@ -57,10 +57,10 @@
           <v-col cols="6">
             <v-textarea
               v-show="answer"
-              v-model="answer"
-              name="answer"
-              label="回答"
-              background-color="blue lighten-5"
+              v-model="check"
+              name="check"
+              label="文法チェック"
+              background-color="red lighten-5"
               disabled
             ></v-textarea>
           </v-col>
@@ -99,18 +99,19 @@ export default {
       inputJapanese: null,
       inputForeign: null,
       category: null,
+      check: null,
     };
   },
   computed: {
-    ...mapGetters("categories", ["category"]),
     ...mapGetters("language", ["language"]),
     ...mapGetters("questions", ["question"]),
   },
   methods: {
     ...mapActions("categories", ["fetchCategory"]),
     ...mapActions("questions", ["setQuestion"]),
-    updateAnswer(answer) {
-      this.answer = answer;
+    updateAnswer(response) {
+      this.answer = response.translation.text;
+      this.check = response.check;
     },
   },
   created() {
