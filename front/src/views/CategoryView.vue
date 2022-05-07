@@ -46,7 +46,6 @@
           </v-col>
           <v-col cols="6">
             <v-textarea
-              v-show="answer"
               v-model="answer"
               name="answer"
               label="回答例"
@@ -55,14 +54,15 @@
             ></v-textarea>
           </v-col>
           <v-col cols="6">
-            <v-textarea
-              v-show="answer"
-              v-model="check"
-              name="check"
-              label="文法チェック"
-              background-color="red lighten-5"
-              disabled
-            ></v-textarea>
+            <v-list-item three-line>
+              <v-list-item-content v-for="error in errorList" :key="error.id">
+                <v-list-item-title>{{
+                  error.description.en
+                }}</v-list-item-title>
+                <v-list-item-subtitle>{{ error.bad }}</v-list-item-subtitle>
+                <v-list-item-subtitle>{{ error.better }}</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
           </v-col>
           <v-col cols="12">
             <answer-button
@@ -99,7 +99,7 @@ export default {
       inputJapanese: null,
       inputForeign: null,
       category: null,
-      check: null,
+      errorList: [],
     };
   },
   computed: {
@@ -111,7 +111,8 @@ export default {
     ...mapActions("questions", ["setQuestion"]),
     updateAnswer(response) {
       this.answer = response.translation.text;
-      this.check = response.check;
+      this.errorList = response.check.response.errors;
+      console.log(this.errorList);
     },
   },
   created() {
