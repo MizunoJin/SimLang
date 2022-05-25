@@ -63,6 +63,9 @@
                   >{{ error.bad }} => {{ error.better }}</v-list-item-subtitle
                 >
               </v-list-item-content>
+              <v-list-item-content v-if="!errorList.length">
+                <v-list-item-title>バッチリです！</v-list-item-title>
+              </v-list-item-content>
             </v-list-item>
           </v-col>
           <v-col cols="12">
