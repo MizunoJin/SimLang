@@ -4,7 +4,7 @@ const apiUrl = "http://localhost:3000";
 
 const state = {
   questions: [],
-  question: JSON.parse(localStorage.getItem("question")) || null,
+  question: null,
 };
 
 const getters = {

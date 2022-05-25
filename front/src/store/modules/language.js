@@ -1,5 +1,5 @@
 const state = {
-  language: JSON.parse(localStorage.getItem("language")) || null,
+  language: null,
 };
 
 const getters = {
