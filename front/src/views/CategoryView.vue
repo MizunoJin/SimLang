@@ -46,7 +46,6 @@
           </v-col>
           <v-col cols="6">
             <v-textarea
-              v-show="answer"
               v-model="answer"
               name="answer"
               label="回答例"
@@ -55,14 +54,19 @@
             ></v-textarea>
           </v-col>
           <v-col cols="6">
-            <v-textarea
-              v-show="answer"
-              v-model="check"
-              name="check"
-              label="文法チェック"
-              background-color="red lighten-5"
-              disabled
-            ></v-textarea>
+            <v-list-item two-line>
+              <v-list-item-content v-for="error in errorList" :key="error.id">
+                <v-list-item-title>{{
+                  error.description.en
+                }}</v-list-item-title>
+                <v-list-item-subtitle
+                  >{{ error.bad }} => {{ error.better }}</v-list-item-subtitle
+                >
+              </v-list-item-content>
+              <v-list-item-content v-if="!errorList.length">
+                <v-list-item-title>バッチリです！</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
           </v-col>
           <v-col cols="12">
             <answer-button
@@ -78,6 +82,13 @@
     </v-row>
   </v-container>
 </template>
+
+<style scoped>
+.wrap-text {
+  word-break: break-all;
+  white-space: normal;
+}
+</style>
 
 <script>
 import axios from "axios";
@@ -99,7 +110,7 @@ export default {
       inputJapanese: null,
       inputForeign: null,
       category: null,
-      check: null,
+      errorList: [],
     };
   },
   computed: {
@@ -111,7 +122,8 @@ export default {
     ...mapActions("questions", ["setQuestion"]),
     updateAnswer(response) {
       this.answer = response.translation.text;
-      this.check = response.check;
+      this.errorList = response.check.response.errors;
+      console.log(this.errorList);
     },
   },
   created() {

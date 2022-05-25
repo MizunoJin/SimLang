@@ -12,6 +12,13 @@ const routes = [
     },
   },
   {
+    path: "/login",
+    name: "login",
+    component: function () {
+      return import("../views/LoginView.vue");
+    },
+  },
+  {
     path: "/categories/:id",
     name: "category",
     component: function () {
