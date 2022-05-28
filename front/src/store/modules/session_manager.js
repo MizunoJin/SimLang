@@ -107,7 +107,7 @@ const actions = {
       axios
         .get(`${BASE_URL}member-data`, config)
         .then((response) => {
-          commit("serUserInfoFromToken", response);
+          commit("setUserInfoFromToken", response);
           resolve(response);
         })
         .catch((error) => {
