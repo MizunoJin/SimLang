@@ -37,16 +37,12 @@ const router = new VueRouter({
   routes,
 });
 
-// メタフィールドrequiresAuthが要認証trueなら認証フラグ判定
 router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    // requiresAuthがtrueなら評価
-    if (!store.getters.isLoggedIn) {
-      // 未ログインならログインページへ
-      next("/login");
-    } else {
-      next();
-    }
+  if (
+    to.matched.some((record) => record.meta.requiresAuth) &&
+    !store.getters.isLoggedIn
+  ) {
+    next({ name: "login" });
   } else {
     next();
   }
