@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2022_05_26_121435) do
 
   create_table "jwt_denylist", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "jti", null: false
-    t.datetime "ewp", null: false
+    t.datetime "exp", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
