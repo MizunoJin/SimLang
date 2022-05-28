@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <!-- <session-manager></session-manager> -->
     <v-app-bar app color="primary" flat>
       <v-container class="py-0 fill-height">
         <router-link to="/">
@@ -55,8 +56,13 @@
 </template>
 
 <script>
+// import SessionManager from "./components/SessionManager.vue";
+
 export default {
   name: "App",
+  // components: {
+  //   SessionManager,
+  // },
   data: () => ({
     icons: ["mdi-home", "mdi-email", "mdi-calendar", "mdi-delete"],
     items: ["default", "absolute", "fixed"],
