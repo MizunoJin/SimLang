@@ -19,15 +19,12 @@
 
         <v-spacer></v-spacer>
 
-        <v-responsive max-width="260">
-          <v-text-field
-            dense
-            flat
-            hide-details
-            rounded
-            solo-inverted
-          ></v-text-field>
-        </v-responsive>
+        <v-btn v-if="isLoggedIn" color="accent" @click="logoutUser"
+          >LOGOUT<v-icon>mdi-logout</v-icon></v-btn
+        >
+        <v-btn v-else color="accent" :to="{ name: 'login' }"
+          >LOGIN<v-icon>mdi-login</v-icon></v-btn
+        >
       </v-container>
     </v-app-bar>
 
@@ -56,13 +53,10 @@
 </template>
 
 <script>
-// import SessionManager from "./components/SessionManager.vue";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "App",
-  // components: {
-  //   SessionManager,
-  // },
   data: () => ({
     icons: ["mdi-home", "mdi-email", "mdi-calendar", "mdi-delete"],
     items: ["default", "absolute", "fixed"],
@@ -71,6 +65,7 @@ export default {
     links: ["Dashboard", "Messages", "Profile", "Updates"],
   }),
   computed: {
+    ...mapGetters(["isLoggedIn"]),
     localAttrs() {
       const attrs = {};
 
@@ -82,6 +77,9 @@ export default {
       }
       return attrs;
     },
+  },
+  methods: {
+    ...mapActions(["logoutUser"]),
   },
 };
 </script>
