@@ -21,7 +21,7 @@ module Api
     private
 
     def set_url(text:, language:)
-      uri = URI.parse("https://api.textgears.com/grammar")
+      uri = URI.parse('https://api.textgears.com/grammar')
       uri.query = URI.encode_www_form({ key: Rails.application.credentials.textgears[:auth_key], text: text,
                                         language: language })
       uri
@@ -37,8 +37,7 @@ module Api
     def fetch_data(uri:, http:)
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
-      result = JSON.parse(response.body, { symbolize_names: true })
-      result
+      JSON.parse(response.body, { symbolize_names: true })
     end
   end
 end

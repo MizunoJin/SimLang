@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <!-- <session-manager></session-manager> -->
     <v-app-bar app color="primary" flat>
       <v-container class="py-0 fill-height">
         <router-link to="/">
@@ -18,15 +19,12 @@
 
         <v-spacer></v-spacer>
 
-        <v-responsive max-width="260">
-          <v-text-field
-            dense
-            flat
-            hide-details
-            rounded
-            solo-inverted
-          ></v-text-field>
-        </v-responsive>
+        <v-btn v-if="isLoggedIn" color="accent" @click="logoutUser"
+          >LOGOUT<v-icon>mdi-logout</v-icon></v-btn
+        >
+        <v-btn v-else color="accent" :to="{ name: 'login' }"
+          >LOGIN<v-icon>mdi-login</v-icon></v-btn
+        >
       </v-container>
     </v-app-bar>
 
@@ -55,6 +53,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "App",
   data: () => ({
@@ -65,6 +65,7 @@ export default {
     links: ["Dashboard", "Messages", "Profile", "Updates"],
   }),
   computed: {
+    ...mapGetters(["isLoggedIn"]),
     localAttrs() {
       const attrs = {};
 
@@ -76,6 +77,9 @@ export default {
       }
       return attrs;
     },
+  },
+  methods: {
+    ...mapActions(["logoutUser"]),
   },
 };
 </script>
