@@ -19,7 +19,7 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn v-if="isLoggedIn" color="accent" @click="logoutUser"
+        <v-btn v-if="isLoggedIn" color="accent" @click="onLogout"
           >LOGOUT<v-icon>mdi-logout</v-icon></v-btn
         >
         <v-btn v-else color="accent" :to="{ name: 'login' }"
@@ -80,6 +80,10 @@ export default {
   },
   methods: {
     ...mapActions(["logoutUser"]),
+    onLogout() {
+      this.logoutUser();
+      this.$router.push({ name: "login" });
+    },
   },
 };
 </script>

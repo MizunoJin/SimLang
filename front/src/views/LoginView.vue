@@ -69,6 +69,7 @@ export default {
       };
       this.loginUser(data);
       this.resetData();
+      this.$router.push({ name: "home" });
     },
     resetData() {
       this.signUpEmail = "";
