@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "@/store/index";
 
 Vue.use(VueRouter);
 
@@ -10,6 +11,7 @@ const routes = [
     component: function () {
       return import("../views/HomeView.vue");
     },
+    meta: { requiresAuth: true },
   },
   {
     path: "/login",
@@ -17,6 +19,7 @@ const routes = [
     component: function () {
       return import("../views/LoginView.vue");
     },
+    meta: { requiresAuth: false },
   },
   {
     path: "/categories/:id",
@@ -24,6 +27,7 @@ const routes = [
     component: function () {
       return import("../views/CategoryView.vue");
     },
+    meta: { requiresAuth: true },
   },
 ];
 
@@ -31,6 +35,18 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+function isLogin() {
+  return store.getters.isLoggedIn;
+}
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth) && !isLogin) {
+    next({ name: "login" });
+  } else {
+    next();
+  }
 });
 
 export default router;
