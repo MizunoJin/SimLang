@@ -28,6 +28,15 @@ const routes = [
       return import("../views/CategoryView.vue");
     },
     meta: { requiresAuth: true },
+    children: [
+      {
+        path: "answer",
+        name: "answer",
+        component: function () {
+          return import("../views/AnswerView.vue");
+        },
+      },
+    ],
   },
 ];
 
@@ -37,12 +46,11 @@ const router = new VueRouter({
   routes,
 });
 
-function isLogin() {
-  return store.getters.isLoggedIn;
-}
-
 router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth) && !isLogin) {
+  if (
+    to.matched.some((record) => record.meta.requiresAuth) &&
+    !store.getters.isLoggedIn
+  ) {
     next({ name: "login" });
   } else {
     next();

@@ -21,6 +21,9 @@ const getters = {
   getUserID(state) {
     return state.user?.id;
   },
+  getUserName(state) {
+    return state.user?.username;
+  },
   isLoggedIn(state) {
     const loggedOut =
       state.auth_token == null || state.auth_token == JSON.stringify(null);
