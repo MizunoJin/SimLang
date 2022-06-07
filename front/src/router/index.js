@@ -28,6 +28,15 @@ const routes = [
       return import("../views/CategoryView.vue");
     },
     meta: { requiresAuth: true },
+    children: [
+      {
+        path: "answer",
+        name: "answer",
+        component: function () {
+          return import("../views/AnswerView.vue");
+        },
+      },
+    ],
   },
 ];
 

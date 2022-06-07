@@ -17,6 +17,7 @@
           {{ link }}
         </v-btn>
 
+        <div v-if="isLoggedIn">{{ getUserName }}</div>
         <v-spacer></v-spacer>
 
         <v-btn v-if="isLoggedIn" color="accent" @click="onLogout"
@@ -65,7 +66,7 @@ export default {
     links: ["Dashboard", "Messages", "Profile", "Updates"],
   }),
   computed: {
-    ...mapGetters(["isLoggedIn"]),
+    ...mapGetters(["isLoggedIn", "getUserName"]),
     localAttrs() {
       const attrs = {};
 
