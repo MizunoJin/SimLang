@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_26_121435) do
+ActiveRecord::Schema.define(version: 2022_06_07_135023) do
+
+  create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.text "japanese_text", null: false
+    t.text "foreign_text", null: false
+    t.text "translation", null: false
+    t.bigint "questions_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["questions_id"], name: "index_answers_on_questions_id"
+  end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title", limit: 100, null: false
@@ -51,5 +61,6 @@ ActiveRecord::Schema.define(version: 2022_05_26_121435) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answers", "questions", column: "questions_id"
   add_foreign_key "questions", "categories"
 end
