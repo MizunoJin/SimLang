@@ -100,10 +100,11 @@ const actions = {
         });
     });
   },
-  loginUserWithToken({ commit }, payload) {
+  loginUserWithToken({ commit }) {
+    const auth_token = localStorage.getItem("auth_token");
     const config = {
       headers: {
-        Authorization: payload.auth_token,
+        Authorization: auth_token,
       },
     };
     new Promise((resolve, reject) => {
