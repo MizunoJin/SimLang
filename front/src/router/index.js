@@ -48,9 +48,9 @@ const router = new VueRouter({
 
 router.beforeEach((to, _, next) => {
   if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
-    router.push({ path: "login" });
+    router.push({ path: "login" }).catch(() => {});
   } else if (to.meta.requiresUnauth && store.getters.isLoggedIn) {
-    router.push({ path: "home" });
+    router.push({ path: "/" }).catch(() => {});
   } else {
     next();
   }
