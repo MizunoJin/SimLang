@@ -19,7 +19,7 @@ const routes = [
     component: function () {
       return import("../views/LoginView.vue");
     },
-    meta: { requiresAuth: false },
+    meta: { requiresUnauth: true },
   },
   {
     path: "/categories/:id",
@@ -46,12 +46,11 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  if (
-    to.matched.some((record) => record.meta.requiresAuth) &&
-    !store.getters.isLoggedIn
-  ) {
-    next({ name: "login" });
+router.beforeEach((to, _, next) => {
+  if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
+    router.push({ path: "login" });
+  } else if (to.meta.requiresUnauth && store.getters.isLoggedIn) {
+    router.push({ path: "home" });
   } else {
     next();
   }
