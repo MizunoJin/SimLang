@@ -25,9 +25,7 @@ const getters = {
     return state.user?.username;
   },
   isLoggedIn(state) {
-    const loggedOut =
-      state.auth_token == null || state.auth_token == JSON.stringify(null);
-    return !loggedOut;
+    return !!state.auth_token;
   },
 };
 
