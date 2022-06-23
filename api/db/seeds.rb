@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-
+User.create(email: "john@example.com", password: "password")
 
 basic = Category.create(title: "基本", description: "基本的な会話について学びましょう")
 hobby = Category.create(title: "趣味", description: "あなたの好きなものについて教えてください")
