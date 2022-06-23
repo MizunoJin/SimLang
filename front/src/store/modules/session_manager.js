@@ -25,9 +25,7 @@ const getters = {
     return state.user?.username;
   },
   isLoggedIn(state) {
-    const loggedOut =
-      state.auth_token == null || state.auth_token == JSON.stringify(null);
-    return !loggedOut;
+    return !!state.auth_token;
   },
 };
 
@@ -69,18 +67,16 @@ const actions = {
         });
     });
   },
-  loginUser({ commit }, payload) {
-    new Promise((resolve, reject) => {
-      axios
-        .post(`${BASE_URL}users/sign_in`, payload)
-        .then((response) => {
-          commit("setUserInfo", response);
-          resolve(response);
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
+  async loginUser({ commit }, payload) {
+    const response = await axios.post(`${BASE_URL}users/sign_in`, payload);
+    if (!response.status === 200) {
+      const error = new Error(
+        response.message || "Failed to authenticate. Check your login data."
+      );
+      throw error;
+    }
+
+    commit("setUserInfo", response);
   },
   logoutUser({ commit }) {
     const config = {
@@ -100,10 +96,11 @@ const actions = {
         });
     });
   },
-  loginUserWithToken({ commit }, payload) {
+  loginUserWithToken({ commit }) {
+    const auth_token = localStorage.getItem("auth_token");
     const config = {
       headers: {
-        Authorization: payload.auth_token,
+        Authorization: auth_token,
       },
     };
     new Promise((resolve, reject) => {

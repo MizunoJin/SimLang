@@ -86,5 +86,8 @@ export default {
       this.$router.push({ name: "login" });
     },
   },
+  created() {
+    this.$store.dispatch("loginUserWithToken");
+  },
 };
 </script>
