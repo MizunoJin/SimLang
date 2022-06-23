@@ -8,7 +8,7 @@
               <v-toolbar dark color="primary">
                 <v-toolbar-title>ログイン</v-toolbar-title>
               </v-toolbar>
-              <v-form @submit="onLogin">
+              <v-form @submit.prevent="onLogin">
                 <v-card-text>
                   <v-text-field
                     prepend-icon="mdi-account"
@@ -59,17 +59,19 @@ export default {
   },
   methods: {
     ...mapActions(["loginUser"]),
-    onLogin(event) {
-      event.preventDefault();
+    async onLogin() {
       let data = {
         user: {
           email: this.loginEmail,
           password: this.loginPassword,
         },
       };
-      this.loginUser(data);
-      this.resetData();
-      this.$router.push({ name: "home" });
+      try {
+        await this.loginUser(data);
+        this.$router.replace({ name: "home" });
+      } catch (err) {
+        console.log(err);
+      }
     },
     resetData() {
       this.signUpEmail = "";

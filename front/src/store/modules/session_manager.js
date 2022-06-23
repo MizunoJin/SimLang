@@ -67,18 +67,16 @@ const actions = {
         });
     });
   },
-  loginUser({ commit }, payload) {
-    new Promise((resolve, reject) => {
-      axios
-        .post(`${BASE_URL}users/sign_in`, payload)
-        .then((response) => {
-          commit("setUserInfo", response);
-          resolve(response);
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
+  async loginUser({ commit }, payload) {
+    const response = await axios.post(`${BASE_URL}users/sign_in`, payload);
+    if (!response.status === 200) {
+      const error = new Error(
+        response.message || "Failed to authenticate. Check your login data."
+      );
+      throw error;
+    }
+
+    commit("setUserInfo", response);
   },
   logoutUser({ commit }) {
     const config = {
