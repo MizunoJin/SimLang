@@ -38,8 +38,7 @@ const mutations = {
     localStorage.setItem("auth_token", payload.headers.authorization);
   },
   setUserInfoFromToken(state, payload) {
-    state.user = payload.data.user;
-    state.auth_token = localStorage.getItem("auth_token");
+    state.auth_token = payload.auth_token;
   },
   resetUserInfo(state) {
     state.user = {
@@ -78,41 +77,27 @@ const actions = {
 
     commit("setUserInfo", response);
   },
-  logoutUser({ commit }) {
+  async logoutUser({ commit }) {
     const config = {
       headers: {
         authorization: state.auth_token,
       },
     };
-    new Promise((resolve, reject) => {
-      axios
-        .delete(`${BASE_URL}users/sign_out`, config)
-        .then(() => {
-          commit("resetUserInfo");
-          resolve();
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
+    const response = await axios.delete(`${BASE_URL}users/sign_out`, config);
+
+    if (!response.status === 200) {
+      const error = new Error(
+        response.message || "Failed to authenticate. Check your login data."
+      );
+      throw error;
+    }
+
+    commit("resetUserInfo");
   },
   loginUserWithToken({ commit }) {
     const auth_token = localStorage.getItem("auth_token");
-    const config = {
-      headers: {
-        Authorization: auth_token,
-      },
-    };
-    new Promise((resolve, reject) => {
-      axios
-        .get(`${BASE_URL}member-data`, config)
-        .then((response) => {
-          commit("setUserInfoFromToken", response);
-          resolve(response);
-        })
-        .catch((error) => {
-          reject(error);
-        });
+    commit("setUserInfoFromToken", {
+      auth_token,
     });
   },
 };

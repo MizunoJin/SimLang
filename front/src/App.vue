@@ -81,9 +81,13 @@ export default {
   },
   methods: {
     ...mapActions(["logoutUser"]),
-    onLogout() {
-      this.logoutUser();
-      this.$router.push({ name: "login" });
+    async onLogout() {
+      try {
+        await this.logoutUser();
+        this.$router.push({ name: "login" });
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
   created() {
