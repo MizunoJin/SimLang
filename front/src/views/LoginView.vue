@@ -40,6 +40,13 @@
         </v-layout>
       </v-container>
     </v-main>
+    <v-overlay :value="overlay">
+      <v-progress-circular
+        indeterminate
+        size="64"
+        color="primary"
+      ></v-progress-circular>
+    </v-overlay>
   </v-app>
 </template>
 
@@ -55,11 +62,13 @@ export default {
     return {
       loginEmail: "",
       loginPassword: "",
+      overlay: false,
     };
   },
   methods: {
     ...mapActions(["loginUser"]),
     async onLogin() {
+      this.overlay = !this.overlay;
       let data = {
         user: {
           email: this.loginEmail,
@@ -72,6 +81,7 @@ export default {
       } catch (err) {
         console.log(err);
       }
+      this.overlay = false;
     },
     resetData() {
       this.signUpEmail = "";
