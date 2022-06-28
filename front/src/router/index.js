@@ -22,13 +22,6 @@ const routes = [
     name: "category",
     component: () => import("../views/CategoryView.vue"),
     meta: { requiresAuth: true },
-    children: [
-      {
-        path: "answer",
-        name: "answer",
-        component: () => import("../views/AnswerView.vue"),
-      },
-    ],
   },
 ];
 
@@ -39,7 +32,6 @@ const router = new VueRouter({
 });
 store.dispatch("loginUserWithToken").then(() => {
   router.beforeEach((to, _, next) => {
-    console.log(store.getters.isLoggedIn);
     if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
       next({ name: "login" });
     } else if (to.meta.requiresUnauth && store.getters.isLoggedIn) {

@@ -69,9 +69,6 @@
             </v-list-item>
           </v-col>
           <v-col cols="12">
-            <v-btn color="accent" elevation="6" :to="{ name: 'answer' }"
-              >回答する
-            </v-btn>
             <answer-button
               :to="{ name: 'answer' }"
               @updateAnswer="updateAnswer"
@@ -82,7 +79,6 @@
             </answer-button>
           </v-col>
         </v-sheet>
-        <router-view></router-view>
       </v-col>
     </v-row>
   </v-container>
