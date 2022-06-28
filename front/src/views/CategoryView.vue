@@ -44,16 +44,7 @@
               hint="外国語で入力してください"
             ></v-textarea>
           </v-col>
-          <v-col cols="6">
-            <v-textarea
-              v-model="answer"
-              name="answer"
-              label="回答例"
-              background-color="blue lighten-5"
-              disabled
-            ></v-textarea>
-          </v-col>
-          <v-col cols="6">
+          <v-col cols="6" v-if="answer">
             <v-list-item two-line>
               <v-list-item-content v-for="error in errorList" :key="error.id">
                 <v-list-item-title>{{
@@ -68,10 +59,16 @@
               </v-list-item-content>
             </v-list-item>
           </v-col>
+          <v-col cols="6" v-if="answer">
+            <v-textarea
+              v-model="answer"
+              name="answer"
+              label="回答例"
+              background-color="blue lighten-5"
+              disabled
+            ></v-textarea>
+          </v-col>
           <v-col cols="12">
-            <v-btn color="accent" elevation="6" :to="{ name: 'answer' }"
-              >回答する
-            </v-btn>
             <answer-button
               :to="{ name: 'answer' }"
               @updateAnswer="updateAnswer"
@@ -82,7 +79,6 @@
             </answer-button>
           </v-col>
         </v-sheet>
-        <router-view></router-view>
       </v-col>
     </v-row>
   </v-container>
