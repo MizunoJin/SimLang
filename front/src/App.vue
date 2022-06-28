@@ -90,8 +90,5 @@ export default {
       }
     },
   },
-  created() {
-    this.$store.dispatch("loginUserWithToken");
-  },
 };
 </script>

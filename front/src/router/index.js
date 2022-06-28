@@ -45,15 +45,17 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-
-router.beforeEach((to, _, next) => {
-  if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
-    router.push({ path: "login" }).catch(() => {});
-  } else if (to.meta.requiresUnauth && store.getters.isLoggedIn) {
-    router.push({ path: "/" }).catch(() => {});
-  } else {
-    next();
-  }
+store.dispatch("loginUserWithToken").then(() => {
+  router.beforeEach((to, _, next) => {
+    console.log(store.getters.isLoggedIn);
+    if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
+      next({ name: "login" });
+    } else if (to.meta.requiresUnauth && store.getters.isLoggedIn) {
+      next({ name: "home" });
+    } else {
+      next();
+    }
+  });
 });
 
 export default router;
