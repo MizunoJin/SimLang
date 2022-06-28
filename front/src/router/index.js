@@ -8,33 +8,25 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: function () {
-      return import("../views/HomeView.vue");
-    },
+    component: () => import("../views/HomeView.vue"),
     meta: { requiresAuth: true },
   },
   {
     path: "/login",
     name: "login",
-    component: function () {
-      return import("../views/LoginView.vue");
-    },
+    component: () => import("../views/LoginView.vue"),
     meta: { requiresUnauth: true },
   },
   {
     path: "/categories/:id",
     name: "category",
-    component: function () {
-      return import("../views/CategoryView.vue");
-    },
+    component: () => import("../views/CategoryView.vue"),
     meta: { requiresAuth: true },
     children: [
       {
         path: "answer",
         name: "answer",
-        component: function () {
-          return import("../views/AnswerView.vue");
-        },
+        component: () => import("../views/AnswerView.vue"),
       },
     ],
   },
