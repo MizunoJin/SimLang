@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <!-- <session-manager></session-manager> -->
     <v-app-bar app color="primary" flat>
       <v-container class="py-0 fill-height">
         <router-link to="/">
@@ -17,7 +16,6 @@
           {{ link }}
         </v-btn>
 
-        <div v-if="isLoggedIn">{{ getUserEmail }}</div>
         <v-spacer></v-spacer>
 
         <v-btn v-if="isLoggedIn" color="accent" @click="onLogout"
@@ -63,10 +61,10 @@ export default {
     items: ["default", "absolute", "fixed"],
     padless: false,
     variant: "default",
-    links: ["Dashboard", "Messages", "Profile", "Updates"],
+    links: ["Dashboard", "Profile"],
   }),
   computed: {
-    ...mapGetters(["isLoggedIn", "getUserEmail"]),
+    ...mapGetters(["isLoggedIn"]),
     localAttrs() {
       const attrs = {};
 
