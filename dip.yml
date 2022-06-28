@@ -1,0 +1,37 @@
+version: '7'
+
+compose:
+  files:
+    - docker-compose.yml
+
+interaction:
+  bash:
+    description: Open the Bash shell in app's container
+    service: web
+    command: /bin/bash
+
+  pry:
+    description: Open Pry console
+    service: web
+    command: ./bin/console
+
+  bundle:
+    description: Run Bundler commands
+    service: web
+    command: bundle
+
+  rspec:
+    description: Run Rspec commands
+    service: web
+    command: bundle exec rspec
+
+  rubocop:
+    description: Run Rubocop commands
+    service: web
+    command: bundle exec rubocop
+
+provision:
+  - cp -f lefthook-local.dip_example.yml lefthook-local.yml
+  - dip compose down --volumes
+  - rm -rf Gemfile.lock
+  - dip bundle install
