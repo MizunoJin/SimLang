@@ -68,7 +68,7 @@
               disabled
             ></v-textarea>
           </v-col>
-          <v-col cols="12">
+          <v-col cols="12" v-if="answer">
             <answer-button
               :to="{ name: 'answer' }"
               @updateAnswer="updateAnswer"
