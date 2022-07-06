@@ -28,7 +28,6 @@ services:
       - 27017:27017
     volumes:
       - mongodb:/data/db
-    restart: unless-stopped
   front:
     build: ./front
     volumes:
